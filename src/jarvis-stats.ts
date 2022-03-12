@@ -25,23 +25,23 @@ import { actionHandler } from './action-handler-directive';
 
 /* eslint no-console: 0 */
 console.info(
-  `%c  JARVIS-WIDGET-TEMPLATE \n%c  version: ${CARD_VERSION}  `,
+  `%c  JARVIS-STATS \n%c  version: ${CARD_VERSION}  `,
   'color: orange; font-weight: bold; background: black',
   'color: white; font-weight: bold; background: dimgray',
 );
 
 (window as any).customCards = (window as any).customCards || [];
 (window as any).customCards.push({
-  type: 'jarvis-widget-template',
+  type: 'jarvis-stats',
   name: 'Boilerplate Card',
   description: 'A template custom card for you to create something awesome',
 });
 
 export class BoilerplateCard extends LitElement {
   public static async getConfigElement(): Promise<LovelaceCardEditor> {
-    // REPLACE "jarvis-widget-template" with widget name, everywhere in the project
+    // REPLACE "jarvis-stats" with widget name, everywhere in the project
     // REPLACE the file name with the actual widget name
-    return document.createElement('jarvis-widget-template-editor');
+    return document.createElement('jarvis-stats-editor');
   }
 
   public static getStubConfig(): Record<string, unknown> {
@@ -102,8 +102,8 @@ export class BoilerplateCard extends LitElement {
 
   static get styles(): CSSResultGroup {
     return css`
-      /* REPLACE "jarvis-widget-template" with actual widget name */
-      .type-custom-jarvis-widget-template {
+      /* REPLACE "jarvis-stats" with actual widget name */
+      .type-custom-jarvis-stats {
         height: 100%;
         width: 100%;
       }
@@ -156,4 +156,4 @@ export class BoilerplateCard extends LitElement {
   }
 }
 
-customElements.define("jarvis-widget-template", BoilerplateCard);
+customElements.define("jarvis-stats", BoilerplateCard);

@@ -32,7 +32,7 @@ const plugins = [
 
 export default [
   {
-    input: 'src/jarvis-widget-template.ts',
+    input: 'src/jarvis-stats.ts',
     output: {
       dir: 'dist',
       format: 'es',
