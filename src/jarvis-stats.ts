@@ -115,7 +115,6 @@ export class BoilerplateCard extends LitElement {
         left: 0;
         padding: 20px;
         box-sizing: border-box;
-        border: 1px solid #fff;
       }
     `;
   }
@@ -141,16 +140,14 @@ export class BoilerplateCard extends LitElement {
 
     return html`
       <ha-card
-        .header=${this.config.name}
         @action=${this._handleAction}
         .actionHandler=${actionHandler({
           hasHold: hasAction(this.config.hold_action),
           hasDoubleClick: hasAction(this.config.double_tap_action),
         })}
         tabindex="0"
-        .label=${`Boilerplate: ${this.config || 'No Entity Defined'}`}
       >
-        <div class='jarvis-widget'>It's the template!</div>
+        <div class='jarvis-widget'></div>
       </ha-card>
     `;
   }
