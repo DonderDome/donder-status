@@ -115,6 +115,64 @@ export class BoilerplateCard extends LitElement {
         left: 0;
         box-sizing: border-box;
       }
+      .jarvis-stat-wrapper {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+      .jarvis-outside, .jarvis-mid, .jarvis-inside {
+        position: absolute;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .jarvis-mid {
+        padding: 60px;
+      }
+      .jarvis-inside {
+        padding: 75px;
+      }
+      .jarvis-inside > img {
+        animation: innerspin 60s linear infinite;
+      }
+      .jarvis-outside > img {
+        animation: outterspin 180s linear infinite;
+      }
+      .jarvis-stats-values {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding-bottom: 40%;
+        box-sizing: border-box;
+      }
+      .jarvis-stats-values .jarvis-stats-balance {
+        color: #49aae3;
+        font-size: 1.5em;
+        margin-bottom: 5px;
+      }
+      .jarvis-stats-values .jarvis-stats-consumption {
+        font-size: 2em;
+        font-weight: 600;        
+      }
+      .jarvis-stats-values .jarvis-stats-temperature {    
+        margin-top: 5px;
+        opacity: .5;
+        font-size: 1.5em;
+      }
+
+      @keyframes innerspin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+      @keyframes outterspin { 100% { -webkit-transform: rotate(-360deg); transform:rotate(-360deg); } }
     `;
   }
 
@@ -146,7 +204,24 @@ export class BoilerplateCard extends LitElement {
         })}
         tabindex="0"
       >
-        <div class='jarvis-widget'></div>
+        <div class='jarvis-widget'>
+          <div class="jarvis-stat-wrapper">
+            <div class="jarvis-outside">
+              <img src="/local/jarvis/assets/jarvis_outside.svg" />
+            </div>
+            <div class="jarvis-mid">
+              <img src="/local/jarvis/assets/jarvis_mid.svg" />
+            </div>
+            <div class="jarvis-inside">
+              <img src="/local/jarvis/assets/jarvis_inside.svg" />
+            </div>
+            <div class="jarvis-stats-values">
+              <div class="jarvis-stats-balance">+2.1W</div>
+              <div class="jarvis-stats-consumption">47.0W</div>
+              <div class="jarvis-stats-temperature">21ºC</div>
+            </div>
+          </div>  
+        </div>
       </ha-card>
     `;
   }
