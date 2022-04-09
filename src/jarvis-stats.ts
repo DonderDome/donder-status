@@ -113,7 +113,6 @@ export class BoilerplateCard extends LitElement {
         position: absolute;
         top: 0;
         left: 0;
-        padding: 20px;
         box-sizing: border-box;
       }
     `;
