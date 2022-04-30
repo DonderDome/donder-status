@@ -72,7 +72,32 @@ export class BoilerplateCard extends LitElement {
       return false;
     }
 
-    return hasConfigOrEntityChanged(this, changedProps, false);
+    return this.hasConfigOrEntityChanged(this, changedProps, false);
+  }
+
+  protected hasConfigOrEntityChanged(element: any, changedProps: PropertyValues, forceUpdate: boolean): boolean {
+    if (changedProps.has('config') || forceUpdate) {
+      return true;
+    }
+    if (element.config!.all_consumption_entities) {
+      const oldHass = changedProps.get('hass') as HomeAssistant | undefined;
+      if (oldHass) {
+        if (element.config.all_consumption_entities) {
+          let hasChanged = false
+          for (let i=0; i<=element.config.all_consumption_entities.length-1; i++) {
+            const entity = element.config.all_consumption_entities[i]
+            if (oldHass.states[entity] !== element.hass!.states[entity]) {
+              hasChanged = true
+              break
+            }
+          }
+          return hasChanged
+        }
+      }
+      return true;
+    } else {
+      return false;
+    }
   }
 
   private _handleAction(ev: ActionHandlerEvent): void {
@@ -157,9 +182,15 @@ export class BoilerplateCard extends LitElement {
         box-sizing: border-box;
       }
       .jarvis-stats-values .jarvis-stats-balance {
-        color: #49aae3;
         font-size: 1.5em;
         margin-bottom: 5px;
+        color: #49aae3;
+      }
+      .jarvis-stats-values .jarvis-stats-balance.negative {
+        color: red;
+      }
+      .jarvis-stats-values .jarvis-stats-balance.positive {
+        color: #49aae3;
       }
       .jarvis-stats-values .jarvis-stats-consumption {
         font-size: 2em;
@@ -174,6 +205,18 @@ export class BoilerplateCard extends LitElement {
       @keyframes innerspin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
       @keyframes outterspin { 100% { -webkit-transform: rotate(-360deg); transform:rotate(-360deg); } }
     `;
+  }
+
+  protected calculateTotalConsumption = (entities) => {
+    let consumption = 0
+    for (let i=0; i<= entities.length-1; i++) {
+      const c = this.hass.states[entities[i]]?.state
+      if (c) {
+        consumption += parseInt(c)
+      }
+    }
+
+    return consumption / 1000
   }
 
   protected render(): TemplateResult | void {
@@ -195,6 +238,10 @@ export class BoilerplateCard extends LitElement {
       return this._showError('error message');
     }
 
+    const generated = 0
+    const consumption = this.calculateTotalConsumption(this.config.all_consumption_entities)
+    const delta = generated - consumption
+
     return html`
       <ha-card
         @action=${this._handleAction}
@@ -202,7 +249,7 @@ export class BoilerplateCard extends LitElement {
           hasHold: hasAction(this.config.hold_action),
           hasDoubleClick: hasAction(this.config.double_tap_action),
         })}
-        tabindex="0"
+        tabindex="0" 
       >
         <div class='jarvis-widget'>
           <div class="jarvis-stat-wrapper">
@@ -216,8 +263,8 @@ export class BoilerplateCard extends LitElement {
               <img src="/local/jarvis/assets/jarvis_inside.svg" />
             </div>
             <div class="jarvis-stats-values">
-              <div class="jarvis-stats-balance">+2.1W</div>
-              <div class="jarvis-stats-consumption">47.0W</div>
+              <div class=${"jarvis-stats-balance "+ (delta < 0 ? 'negative' : 'positive')}></0>${delta.toFixed(1)}Kw</div>
+              <div class="jarvis-stats-consumption">${consumption.toFixed(1)}Kw</div>
               <div class="jarvis-stats-temperature">21ºC</div>
             </div>
           </div>  
