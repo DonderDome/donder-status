@@ -149,7 +149,7 @@ export class BoilerplateCard extends LitElement {
         position: relative;
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
+        justify-content: center;
       }
       .jarvis-outside, .jarvis-mid, .jarvis-inside {
         position: absolute;
@@ -178,8 +178,8 @@ export class BoilerplateCard extends LitElement {
         text-align: center;
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
-        padding-bottom: 40%;
+        justify-content: center;
+        /* padding-bottom: 40%; */
         box-sizing: border-box;
       }
       .jarvis-stats-values .jarvis-stats-balance {
