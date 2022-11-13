@@ -139,6 +139,7 @@ export class BoilerplateCard extends LitElement {
         top: 0;
         left: 0;
         box-sizing: border-box;
+        color: #fff;
       }
       .jarvis-stat-wrapper {
         width: 100%;
