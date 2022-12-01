@@ -266,7 +266,6 @@ export class BoilerplateCard extends LitElement {
             <div class="jarvis-stats-values">
               <div class=${"jarvis-stats-balance "+ (delta < 0 ? 'negative' : 'positive')}></0>${delta.toFixed(1)}Kw</div>
               <div class="jarvis-stats-consumption">${consumption.toFixed(1)}Kw</div>
-              <div class="jarvis-stats-temperature">21ºC</div>
             </div>
           </div>  
         </div>
