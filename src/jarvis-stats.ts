@@ -142,19 +142,16 @@ export class BoilerplateCard extends LitElement {
         color: #fff;
       }
       .jarvis-stat-wrapper {
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
         position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
       }
-      .jarvis-outside, .jarvis-mid, .jarvis-inside {
-        position: absolute;
+      .jarvis-outside {
         width: 100%;
         padding: 20px;
+        box-sizing: border-box;
+      }
+      .jarvis-mid, .jarvis-inside {
+        position: absolute;
+        top: 0px;
         box-sizing: border-box;
       }
       .jarvis-mid {
@@ -209,15 +206,21 @@ export class BoilerplateCard extends LitElement {
   }
 
   protected calculateTotalConsumption = (entities) => {
-    let consumption = 0
+    const consumption = {
+      W: 0,
+      kW: 0,
+    }
     for (let i=0; i<= entities.length-1; i++) {
-      const c = this.hass.states[entities[i]]?.state
-      if (c) {
-        consumption += parseInt(c)
+      const power = this.hass.states[entities[i]]?.state
+      const unit = this.hass.states[entities[i]]?.attributes.unit_of_measurement as string
+      
+      if (power) {
+        consumption[unit] += parseFloat(power)
       }
     }
 
-    return consumption / 1000
+    const totalConsumption = consumption.W + (consumption.kW / 1000)
+    return totalConsumption    
   }
 
   protected render(): TemplateResult | void {
@@ -240,6 +243,7 @@ export class BoilerplateCard extends LitElement {
     }
 
     const generated = 0
+    // consumption in wats
     const consumption = this.calculateTotalConsumption(this.config.all_consumption_entities)
     const delta = generated - consumption
 
@@ -264,8 +268,8 @@ export class BoilerplateCard extends LitElement {
               <img src="/local/jarvis/assets/jarvis_inside.svg" />
             </div>
             <div class="jarvis-stats-values">
-              <div class=${"jarvis-stats-balance "+ (delta < 0 ? 'negative' : 'positive')}></0>${delta.toFixed(1)}Kw</div>
-              <div class="jarvis-stats-consumption">${consumption.toFixed(1)}Kw</div>
+              <div class=${"jarvis-stats-balance "+ (delta < 0 ? 'negative' : 'positive')}></0>${consumption >= 1000 ? `${(consumption/1000).toFixed(1)} kW` : `${consumption.toFixed(1)} W`}</div>
+              <div class="jarvis-stats-consumption">${consumption >= 1000 ? `${(consumption/1000).toFixed(1)} kW` : `${consumption.toFixed(1)} W`}</div>
             </div>
           </div>  
         </div>
