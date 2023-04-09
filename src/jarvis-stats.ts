@@ -133,11 +133,11 @@ export class BoilerplateCard extends LitElement {
         width: 100%;
       }
       .jarvis-widget {
-        height: 100%;
+        /* height: 100%;
         width: 100%;
         position: absolute;
         top: 0;
-        left: 0;
+        left: 0; */
         box-sizing: border-box;
         color: #fff;
       }
@@ -151,6 +151,7 @@ export class BoilerplateCard extends LitElement {
       }
       .jarvis-mid, .jarvis-inside {
         position: absolute;
+        width: 100%;
         top: 0px;
         box-sizing: border-box;
       }
