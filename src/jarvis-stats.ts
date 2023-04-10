@@ -200,6 +200,12 @@ export class BoilerplateCard extends LitElement {
         opacity: .5;
         font-size: 1.5em;
       }
+      @media (max-width: 600px) {
+        .jarvis-stats-values .jarvis-stats-balance,
+        .jarvis-stats-values .jarvis-stats-consumption {
+          font-size: 6vw;
+        } 
+      }
 
       @keyframes innerspin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
       @keyframes outterspin { 100% { -webkit-transform: rotate(-360deg); transform:rotate(-360deg); } }
