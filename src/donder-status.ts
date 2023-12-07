@@ -127,12 +127,12 @@ export class BoilerplateCard extends LitElement {
 
   static get styles(): CSSResultGroup {
     return css`
-      /* REPLACE "donder-status" with actual widget name */
-      .type-custom-donder-status {
+      /* REPLACE "stats-widget" with actual widget name */
+      .type-custom-stats-widget {
         height: 100%;
         width: 100%;
       }
-      .jarvis-widget {
+      .donder-widget {
         /* height: 100%;
         width: 100%;
         position: absolute;
@@ -141,33 +141,33 @@ export class BoilerplateCard extends LitElement {
         box-sizing: border-box;
         color: #fff;
       }
-      .jarvis-stat-wrapper {
+      .donder-stat-wrapper {
         position: relative;
       }
-      .jarvis-outside {
+      .donder-outside {
         width: 100%;
         padding: 20px;
         box-sizing: border-box;
       }
-      .jarvis-mid, .jarvis-inside {
+      .donder-mid, .donder-inside {
         position: absolute;
         width: 100%;
         top: 0px;
         box-sizing: border-box;
       }
-      .jarvis-mid {
+      .donder-mid {
         padding: 60px;
       }
-      .jarvis-inside {
+      .donder-inside {
         padding: 75px;
       }
-      .jarvis-inside > img {
+      .donder-inside > img {
         animation: innerspin 60s linear infinite;
       }
-      .jarvis-outside > img {
+      .donder-outside > img {
         animation: outterspin 180s linear infinite;
       }
-      .donder-status-values {
+      .donder-stats-values {
         position: absolute;
         top: 0px;
         left: 0px;
@@ -180,29 +180,29 @@ export class BoilerplateCard extends LitElement {
         /* padding-bottom: 40%; */
         box-sizing: border-box;
       }
-      .donder-status-values .donder-status-balance {
+      .donder-stats-values .donder-stats-balance {
         font-size: 1.5em;
         margin-bottom: 5px;
         color: #49aae3;
       }
-      .donder-status-values .donder-status-balance.negative {
+      .donder-stats-values .donder-stats-balance.negative {
         color: red;
       }
-      .donder-status-values .donder-status-balance.positive {
+      .donder-stats-values .donder-stats-balance.positive {
         color: #49aae3;
       }
-      .donder-status-values .donder-status-consumption {
+      .donder-stats-values .donder-stats-consumption {
         font-size: 2em;
         font-weight: 600;        
       }
-      .donder-status-values .donder-status-temperature {    
+      .donder-stats-values .donder-stats-temperature {    
         margin-top: 5px;
         opacity: .5;
         font-size: 1.5em;
       }
       @media (max-width: 600px) {
-        .donder-status-values .donder-status-balance,
-        .donder-status-values .donder-status-consumption {
+        .donder-stats-values .donder-stats-balance,
+        .donder-stats-values .donder-stats-consumption {
           font-size: 6vw;
         } 
       }
@@ -263,20 +263,20 @@ export class BoilerplateCard extends LitElement {
         })}
         tabindex="0" 
       >
-        <div class='jarvis-widget'>
-          <div class="jarvis-stat-wrapper">
-            <div class="jarvis-outside">
-              <img src="/local/jarvis/assets/jarvis_outside.svg" />
+        <div class='donder-widget'>
+          <div class="donder-stat-wrapper">
+            <div class="donder-outside">
+              <img src="/local/donder/assets/jarvis_outside.svg" />
             </div>
-            <div class="jarvis-mid">
-              <img src="/local/jarvis/assets/jarvis_mid.svg" />
+            <div class="donder-mid">
+              <img src="/local/donder/assets/jarvis_mid.svg" />
             </div>
-            <div class="jarvis-inside">
-              <img src="/local/jarvis/assets/jarvis_inside.svg" />
+            <div class="donder-inside">
+              <img src="/local/donder/assets/jarvis_inside.svg" />
             </div>
-            <div class="donder-status-values">
-              <div class=${"donder-status-balance "+ (delta < 0 ? 'negative' : 'positive')}></0>${consumption >= 1000 ? `${(consumption/1000).toFixed(1)} kW` : `${consumption.toFixed(1)} W`}</div>
-              <div class="donder-status-consumption">${consumption >= 1000 ? `${(consumption/1000).toFixed(1)} kW` : `${consumption.toFixed(1)} W`}</div>
+            <div class="donder-stats-values">
+              <div class=${"donder-stats-balance "+ (delta < 0 ? 'negative' : 'positive')}></0>${consumption >= 1000 ? `${(consumption/1000).toFixed(1)} kW` : `${consumption.toFixed(1)} W`}</div>
+              <div class="donder-stats-consumption">${consumption >= 1000 ? `${(consumption/1000).toFixed(1)} kW` : `${consumption.toFixed(1)} W`}</div>
             </div>
           </div>  
         </div>
