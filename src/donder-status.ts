@@ -32,16 +32,16 @@ console.info(
 
 (window as any).customCards = (window as any).customCards || [];
 (window as any).customCards.push({
-  type: 'jarvis-stats',
+  type: 'donder-status',
   name: 'Boilerplate Card',
   description: 'A template custom card for you to create something awesome',
 });
 
 export class BoilerplateCard extends LitElement {
   public static async getConfigElement(): Promise<LovelaceCardEditor> {
-    // REPLACE "jarvis-stats" with widget name, everywhere in the project
+    // REPLACE "donder-status" with widget name, everywhere in the project
     // REPLACE the file name with the actual widget name
-    return document.createElement('jarvis-stats-editor');
+    return document.createElement('donder-status-editor');
   }
 
   public static getStubConfig(): Record<string, unknown> {
@@ -127,8 +127,8 @@ export class BoilerplateCard extends LitElement {
 
   static get styles(): CSSResultGroup {
     return css`
-      /* REPLACE "jarvis-stats" with actual widget name */
-      .type-custom-jarvis-stats {
+      /* REPLACE "donder-status" with actual widget name */
+      .type-custom-donder-status {
         height: 100%;
         width: 100%;
       }
@@ -167,7 +167,7 @@ export class BoilerplateCard extends LitElement {
       .jarvis-outside > img {
         animation: outterspin 180s linear infinite;
       }
-      .jarvis-stats-values {
+      .donder-status-values {
         position: absolute;
         top: 0px;
         left: 0px;
@@ -180,29 +180,29 @@ export class BoilerplateCard extends LitElement {
         /* padding-bottom: 40%; */
         box-sizing: border-box;
       }
-      .jarvis-stats-values .jarvis-stats-balance {
+      .donder-status-values .donder-status-balance {
         font-size: 1.5em;
         margin-bottom: 5px;
         color: #49aae3;
       }
-      .jarvis-stats-values .jarvis-stats-balance.negative {
+      .donder-status-values .donder-status-balance.negative {
         color: red;
       }
-      .jarvis-stats-values .jarvis-stats-balance.positive {
+      .donder-status-values .donder-status-balance.positive {
         color: #49aae3;
       }
-      .jarvis-stats-values .jarvis-stats-consumption {
+      .donder-status-values .donder-status-consumption {
         font-size: 2em;
         font-weight: 600;        
       }
-      .jarvis-stats-values .jarvis-stats-temperature {    
+      .donder-status-values .donder-status-temperature {    
         margin-top: 5px;
         opacity: .5;
         font-size: 1.5em;
       }
       @media (max-width: 600px) {
-        .jarvis-stats-values .jarvis-stats-balance,
-        .jarvis-stats-values .jarvis-stats-consumption {
+        .donder-status-values .donder-status-balance,
+        .donder-status-values .donder-status-consumption {
           font-size: 6vw;
         } 
       }
@@ -274,9 +274,9 @@ export class BoilerplateCard extends LitElement {
             <div class="jarvis-inside">
               <img src="/local/jarvis/assets/jarvis_inside.svg" />
             </div>
-            <div class="jarvis-stats-values">
-              <div class=${"jarvis-stats-balance "+ (delta < 0 ? 'negative' : 'positive')}></0>${consumption >= 1000 ? `${(consumption/1000).toFixed(1)} kW` : `${consumption.toFixed(1)} W`}</div>
-              <div class="jarvis-stats-consumption">${consumption >= 1000 ? `${(consumption/1000).toFixed(1)} kW` : `${consumption.toFixed(1)} W`}</div>
+            <div class="donder-status-values">
+              <div class=${"donder-status-balance "+ (delta < 0 ? 'negative' : 'positive')}></0>${consumption >= 1000 ? `${(consumption/1000).toFixed(1)} kW` : `${consumption.toFixed(1)} W`}</div>
+              <div class="donder-status-consumption">${consumption >= 1000 ? `${(consumption/1000).toFixed(1)} kW` : `${consumption.toFixed(1)} W`}</div>
             </div>
           </div>  
         </div>
@@ -285,4 +285,4 @@ export class BoilerplateCard extends LitElement {
   }
 }
 
-customElements.define("jarvis-stats", BoilerplateCard);
+customElements.define("donder-status", BoilerplateCard);

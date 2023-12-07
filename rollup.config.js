@@ -32,7 +32,7 @@ const plugins = [
 
 export default [
   {
-    input: 'src/jarvis-stats.ts',
+    input: 'src/donder-status.ts',
     output: {
       dir: 'dist',
       format: 'es',
