@@ -25,7 +25,7 @@ import { actionHandler } from './action-handler-directive';
 
 /* eslint no-console: 0 */
 console.info(
-  `%c  JARVIS-STATS \n%c  version: ${CARD_VERSION}  `,
+  `%c  Donder Status \n%c  version: ${CARD_VERSION}  `,
   'color: orange; font-weight: bold; background: black',
   'color: white; font-weight: bold; background: dimgray',
 );
@@ -33,7 +33,7 @@ console.info(
 (window as any).customCards = (window as any).customCards || [];
 (window as any).customCards.push({
   type: 'donder-status',
-  name: 'Boilerplate Card',
+  name: 'Donder Status',
   description: 'A template custom card for you to create something awesome',
 });
 
