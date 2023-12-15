@@ -193,13 +193,12 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
         width: 100%;
       }
       .donder-widget {
-        /* height: 100%;
-        width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0; */
+        background-color: var(--ha-card-background);
+        color: var(--text-primary-color);
+        padding: 15px 22px 22px;
         box-sizing: border-box;
-        color: #fff;
+        text-align: center;
+        border-radius: var(--ha-card-border-radius)
       }
       .donder-stat-wrapper {
         position: relative;
