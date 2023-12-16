@@ -193,7 +193,7 @@ const X=(t,e)=>"method"===e.kind&&e.descriptor&&!("value"in e.descriptor)?{...e,
         width: 100%;
       }
       .donder-widget {
-        background-color: var(--ha-card-background);
+        background-color: transparent;
         color: var(--text-primary-color);
         padding: 15px 22px 22px;
         box-sizing: border-box;

@@ -133,7 +133,7 @@ export class BoilerplateCard extends LitElement {
         width: 100%;
       }
       .donder-widget {
-        background-color: var(--ha-card-background);
+        background-color: transparent;
         color: var(--text-primary-color);
         padding: 15px 22px 22px;
         box-sizing: border-box;
