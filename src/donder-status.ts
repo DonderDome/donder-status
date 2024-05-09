@@ -206,6 +206,14 @@ export class BoilerplateCard extends LitElement {
         } 
       }
 
+      @media (max-width: 900px) {
+        .donder-mobile-wrapper {
+          display: block;
+        }
+        .donder-stat-wrapper {
+          display: none;
+        }
+      }
       @keyframes innerspin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
       @keyframes outterspin { 100% { -webkit-transform: rotate(-360deg); transform:rotate(-360deg); } }
     `;
@@ -277,7 +285,13 @@ export class BoilerplateCard extends LitElement {
               <div class=${"donder-stats-balance "+ (delta < 0 ? 'negative' : 'positive')}></0>${consumption >= 1000 ? `${(consumption/1000).toFixed(1)} kW` : `${consumption.toFixed(1)} W`}</div>
               <div class="donder-stats-consumption">${consumption >= 1000 ? `${(consumption/1000).toFixed(1)} kW` : `${consumption.toFixed(1)} W`}</div>
             </div>
-          </div>  
+          </div> 
+          <div class="donder-mobile-wrapper">
+            <div class="donder-mobile-values">
+              <div class=${"donder-stats-balance "+ (delta < 0 ? 'negative' : 'positive')}></0>${consumption >= 1000 ? `${(consumption/1000).toFixed(1)} kW` : `${consumption.toFixed(1)} W`}</div>
+              <div class="donder-stats-consumption">${consumption >= 1000 ? `${(consumption/1000).toFixed(1)} kW` : `${consumption.toFixed(1)} W`}</div>
+            </div>
+          </div>
         </div>
       </ha-card>
     `;
