@@ -100,9 +100,18 @@ export class BoilerplateCard extends LitElement {
     }
   }
 
-  private _handleAction(ev: ActionHandlerEvent): void {
-    if (this.hass && this.config && ev.detail.action) {
-      handleAction(this, this.hass, this.config, ev.detail.action);
+  private handleClick(): void {
+    this.hass.callService('browser_mod', 'more_info', {
+      entity: this.config.all_consumption_entities[0],
+      browser_id: localStorage.getItem('browser_mod-browser-id')
+    })
+  }
+
+  protected _handleAction(ev: ActionHandlerEvent): void {
+    const { action } = ev?.detail
+
+    if (action === 'tap') {
+      this.handleClick()
     }
   }
 
