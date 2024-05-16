@@ -219,7 +219,7 @@ export class BoilerplateCard extends LitElement {
     `;
   }
 
-  protected calculateTotalConsumption = (entities) => {
+  protected calculateTotalConsumption = (entities, toRemoveEntities) => {
     const consumption = {
       W: 0,
       kW: 0,
@@ -230,6 +230,15 @@ export class BoilerplateCard extends LitElement {
       
       if (power) {
         consumption[unit] += parseFloat(power)
+      }
+    }
+
+    for (let j=0; j<= toRemoveEntities.length-1; j++) {
+      const power = this.hass.states[toRemoveEntities[j]]?.state
+      const unit = this.hass.states[toRemoveEntities[j]]?.attributes.unit_of_measurement as string
+      
+      if (power) {
+        consumption[unit] -= parseFloat(power)
       }
     }
 
@@ -258,7 +267,7 @@ export class BoilerplateCard extends LitElement {
 
     const generated = 0
     // consumption in wats
-    const consumption = this.calculateTotalConsumption(this.config.all_consumption_entities)
+    const consumption = this.calculateTotalConsumption(this.config.all_consumption_entities, this.config.remove_consumption_entities)
     const delta = generated - consumption
 
     return html`
